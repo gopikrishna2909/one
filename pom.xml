@@ -18,7 +18,7 @@
     </properties>
 
     <dependencies>
-        <!-- Modern JUnit: If your tests use legacy JUnit, change back to 3.8.1 -->
+        <!-- JUnit Jupiter (JUnit 5) for modern test support -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -29,13 +29,13 @@
 
     <build>
         <plugins>
-            <!-- Updated WAR plugin for Maven 3.8.x compatibility -->
+            <!-- WAR plugin for Maven 3.8.x compatibility -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.4.0</version>
             </plugin>
-            <!-- Compiler plugin with explicit Java version -->
+            <!-- Compiler plugin for Java 8 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -45,11 +45,16 @@
                     <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
+            <!-- Surefire plugin for running tests and generating reports -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
+            </plugin>
         </plugins>
     </build>
 
     <distributionManagement>
-        <!-- Update to HTTPS if your Nexus supports it; if not, keep HTTP but upgrade ASAP -->
         <snapshotRepository>
             <id>nexusRepo</id>
             <url>https://34.208.218.12:8081/repository/sample-snapshots/</url>
@@ -61,7 +66,6 @@
     </distributionManagement>
 
     <pluginRepositories>
-        <!-- Use Maven Central via HTTPS -->
         <pluginRepository>
             <id>maven-central</id>
             <name>Maven Central</name>
@@ -69,3 +73,4 @@
         </pluginRepository>
     </pluginRepositories>
 </project>
+
