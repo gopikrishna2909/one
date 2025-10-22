@@ -8,7 +8,7 @@
     <packaging>war</packaging>
     <version>8.7.1</version>
     <name>Java Home myweb</name>
-    <url>http://maven.apache.org</url>
+    <url>https://maven.apache.org</url>
 
     <properties>
         <docker.image.prefix>kammana</docker.image.prefix>
@@ -18,7 +18,7 @@
     </properties>
 
     <dependencies>
-        <!-- Updated to JUnit 5 for modern testing -->
+        <!-- Modern JUnit: If your tests use legacy JUnit, change back to 3.8.1 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -29,6 +29,13 @@
 
     <build>
         <plugins>
+            <!-- Updated WAR plugin for Maven 3.8.x compatibility -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+            </plugin>
+            <!-- Compiler plugin with explicit Java version -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -42,12 +49,11 @@
     </build>
 
     <distributionManagement>
-        <!-- Use HTTPS if your Nexus repo supports it; update below as needed -->
+        <!-- Update to HTTPS if your Nexus supports it; if not, keep HTTP but upgrade ASAP -->
         <snapshotRepository>
             <id>nexusRepo</id>
             <url>https://34.208.218.12:8081/repository/sample-snapshots/</url>
         </snapshotRepository>
-
         <repository>
             <id>nexusRepo</id>
             <url>https://44.202.251.20:8081/repository/flm-releases/</url>
@@ -55,7 +61,7 @@
     </distributionManagement>
 
     <pluginRepositories>
-        <!-- Updated to HTTPS; Maven Central default -->
+        <!-- Use Maven Central via HTTPS -->
         <pluginRepository>
             <id>maven-central</id>
             <name>Maven Central</name>
